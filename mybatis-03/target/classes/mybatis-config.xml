@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration 核心配置文件-->
+<configuration>
+<!--引入外部配置文件，可以不用写属性 存放在第1个位置上-->
+    <properties resource="db.properties">
+        <property name="username" value="root"/>
+    </properties>
+<!--类型别名  存放在第3个位置上，之前是setting-->
+    <typeAliases>
+<!--        可以给实体类起别名-->
+        <typeAlias type="com.henjie.pojo.User" alias="User"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--    每一个Mapper.xml都需要在mybatis-config.xml中注册-->
+    <mappers>
+        <mapper resource="com/henjie/dao/UserMapper.xml"/>
+    </mappers>
+</configuration>
